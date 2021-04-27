@@ -1,0 +1,9 @@
+name: GodsEyeSync
+author: GoodTimes14
+version: 2.1.0
+description: Addon for godseye
+main: it.gsync.spigot.GSyncBukkit
+depend: [GodsEye]
+commands:
+  godseyesync:
+    description: GodsEyeSync command

@@ -1,0 +1,4 @@
+bukkit:
+  bungee_bans: true
+  bungee_alerts: true
+  bungee_verboses: true

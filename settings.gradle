@@ -1,0 +1,3 @@
+rootProject.name = 'GodsEyeSync'
+include 'core','bungeecord','spigot','velocity'
+

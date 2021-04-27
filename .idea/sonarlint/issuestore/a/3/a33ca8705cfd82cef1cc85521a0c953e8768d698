@@ -1,0 +1,10 @@
+
+Z
+java:S2259""DA "NullPointerException" could be thrown; "player" is nullable here.(„Ø
+R
+java:S3655'"7Call "Optional#isPresent()" before accessing the value.(ßÂÓéúÿÿÿÿ
+R
+java:S36552"7Call "Optional#isPresent()" before accessing the value.(á›µ‰úÿÿÿÿ
+R
+java:S3655:"7Call "Optional#isPresent()" before accessing the value.(á›µ‰úÿÿÿÿ
+<	java:S131#""Add a default case to this switch.(Ò“ÿšùÿÿÿÿ

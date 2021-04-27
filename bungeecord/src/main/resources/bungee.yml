@@ -1,0 +1,5 @@
+name: GodsEyeSync
+author: GoodTimes14
+version: 2.1.0
+description: GodsEyeSync plugin
+main: it.gsync.bungee.GSyncBungee

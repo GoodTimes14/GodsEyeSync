@@ -1,0 +1,54 @@
+storage:
+  enabled: false
+  #Storage types available: MONGO,MYSQL,H2
+  type: MYSQL
+  host: "localhost"
+  #MySQL default port: 3306
+  #MongoDB default port: 27017
+  port: 3306
+  database: "godseyesync"
+  auth: false
+  credentials:
+    username: "your_username"
+    password: "your_password"
+
+messages:
+  prefix: "&8(&cGodsEye&8) &7>"
+  alerts_enabled_automatically: "%prefix% &aAlerts enabled automatically"
+  alerts_enabled: "%prefix% &aAlerts enabled"
+  alerts_disabled: "%prefix% &cAlerts disabled"
+  verbose_enabled: "%prefix% &aVerbose enabled"
+  verbose_disabled: "%prefix% &cVerbose disabled"
+  alert: "%prefix% &c%player% &7is using &c%hack% &7[&9%server%&7]"
+  verbose: "%prefix% &c%player% &7failed &c%hack% &8[&f%type%&8] &8(&c%flags%&8) &7[&9%server%&7]"
+  kicked_from_server: "%prefix% &c%player% has been kicked out from the server &7[&9%server%&7]"
+  server_tooltip: "&cWarp to server."
+  log_message: "&7Showing &c%player%'s &7logs &8(&7type: &c%type%&8)&7:"
+  log_entry_verbose: "    &7%hack% &c(x%quantity%)"
+  log_entry_punish: "    &c%punishtype% &7%hack% &c[%date%] &7[&c%server%&7]"
+  log_entry_verbose_hover: "&7%hack% &c%type% &7ping: &c%ping% &7tps: &c%tps% &7server: &7[&c%server%&7]"
+  ban_message:
+    - "&8&m-----------------------------------------"
+    - ""
+    - "&c&l%player% &7was banned by &e&lGodsEye &7for &fCheating"
+    - ""
+    - "&8&m-----------------------------------------"
+
+
+settings:
+  #WARNING,Changing this property may cause problems due to the message length
+  verbose_hover_entry_limit: 5
+  #Name of the local database file
+  h2_dbname: "database.db"
+  #Date format for punishments
+  date-format: "dd/MM/yyyy - HH:mm"
+  warp_to_server_command: "/server %server%"
+  ban_broadcast: true
+  enable_alerts_auto: true
+  #PERMISSIONS
+  permission_alert: "godseye.alerts"
+  permission_logs: "godseye.logs"
+  permission_verbose: "godseye.verbose"
+  #you need to write commands without "/"
+  ban_command: "ban %player% Unfair advantage"
+  kick_command: "kick %player% Unfair advantage"

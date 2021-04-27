@@ -1,0 +1,11 @@
+# Project exclude paths
+/.gradle/
+/build/
+/bungeecord/build/
+/bungeecord/build/classes/java/main/
+/core/build/
+/core/build/classes/java/main/
+/spigot/build/
+/spigot/build/classes/java/main/
+/velocity/build/
+/velocity/build/classes/java/main/
