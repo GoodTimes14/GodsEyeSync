@@ -1,6 +1,7 @@
 # Project exclude paths
 /.gradle/
 /build/
+/libs/
 /bungeecord/build/
 /bungeecord/build/classes/java/main/
 /core/build/
