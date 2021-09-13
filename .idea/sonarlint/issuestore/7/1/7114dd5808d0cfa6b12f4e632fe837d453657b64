@@ -1,21 +1,21 @@
 
-b
-java:S2095'"GUse try-with-resources or close this "Statement" in a "finally" clause.(ÇÛ­¨úÿÿÿÿ
-b
-java:S2095*"GUse try-with-resources or close this "Statement" in a "finally" clause.(ÇÛ­¨úÿÿÿÿ
-k
-java:S2095Ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Û‘Âóøÿÿÿÿ
-e
-java:S2095l"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ì”Òº
-k
-java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(”áÕ·şÿÿÿÿ
-k
-java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ­Ğİúÿÿÿÿ
-j
-java:S2095L"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒÄ¢«úÿÿÿÿ
 j
 java:S20958"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(’›Çúÿÿÿÿ
+k
+java:S2095Ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Û‘Âóøÿÿÿÿ
 C
 java:S4925"-Remove this "Class.forName()", it is useless.(›‡ªœ
 B
 java:S1168•"+Return an empty collection instead of null.(¥¹ï
+k
+java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(æ­Ğİúÿÿÿÿ
+e
+java:S2095l"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ì”Òº
+j
+java:S2095L"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ƒÄ¢«úÿÿÿÿ
+b
+java:S2095*"GUse try-with-resources or close this "Statement" in a "finally" clause.(ÇÛ­¨úÿÿÿÿ
+b
+java:S2095'"GUse try-with-resources or close this "Statement" in a "finally" clause.(ÇÛ­¨úÿÿÿÿ
+k
+java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(”áÕ·şÿÿÿÿ

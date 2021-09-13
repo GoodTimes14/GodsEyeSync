@@ -34,7 +34,7 @@ public class HikariConnector extends DataConnector {
         if(getDetails().isAuth()) {
             hikariConfig.setPassword(getDetails().getPassword());
         }
-        hikariConfig.setMaximumPoolSize(20);
+        hikariConfig.setMaximumPoolSize(3);
         hikariConfig.setConnectionTimeout(30000);
         hikariConfig.setIdleTimeout(12000);
         hikariConfig.setLeakDetectionThreshold(30000);

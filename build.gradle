@@ -1,7 +1,7 @@
 
 allprojects {
     group = 'it.goodtimes14'
-    version = '2.1.0'
+    version = '2.1.2'
 
     apply plugin: 'java'
     compileJava.options.encoding = 'UTF-8'
@@ -10,6 +10,7 @@ allprojects {
 }
 
 subprojects {
+    apply plugin: 'java'
     repositories {
         mavenCentral()
         maven { url "https://repo.codemc.io/repository/nms/" }

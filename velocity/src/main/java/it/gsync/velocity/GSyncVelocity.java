@@ -35,7 +35,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-@Plugin(id = "godseyesync", name = "GodsEyeSync", version = "2.1.0",
+@Plugin(id = "godseyesync", name = "GodsEyeSync", version = "2.1.2",
         description = "GodsEyeSync plugin", authors = {"GoodTimes14"})
 @Getter
 @Setter
