@@ -14,7 +14,7 @@ public abstract class AbsListener implements Listener {
 
     public AbsListener(GSyncBungee plugin) {
         this.plugin = plugin;
-        plugin.getProxy().getPluginManager().registerListener(plugin,this);
+        plugin.getLoader().getProxy().getPluginManager().registerListener(plugin.getLoader(),this);
     }
 
 }

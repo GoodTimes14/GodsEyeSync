@@ -4,6 +4,7 @@ import it.gsync.common.data.types.ConnectionDetails;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.net.URLClassLoader;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.logging.Level;

@@ -5,6 +5,7 @@ import it.gsync.bungee.listeners.AbsListener;
 import it.gsync.common.objects.Alert;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.event.EventHandler;
@@ -29,7 +30,7 @@ public class PluginListener  extends AbsListener {
             switch (event.getTag().replace("gsync:","")) {
                 case "alerts":
                     String playerName = in.readUTF();
-                    ProxiedPlayer player = plugin.getProxy().getInstance().getPlayer(playerName);
+                    ProxiedPlayer player = ProxyServer.getInstance().getPlayer(playerName);
                     UUID playerUuid = player.getUniqueId();
                     String checkType = in.readUTF();
                     int vl = in.readInt();
@@ -39,7 +40,7 @@ public class PluginListener  extends AbsListener {
                     break;
                 case "violations":
                     playerName = in.readUTF();
-                    player = plugin.getProxy().getPlayer(playerName);
+                    player = ProxyServer.getInstance().getPlayer(playerName);
                     playerUuid = player.getUniqueId();
                     checkType = in.readUTF();
                     String detection = in.readUTF();
@@ -53,7 +54,7 @@ public class PluginListener  extends AbsListener {
                     break;
                 case "punishments":
                     playerName = in.readUTF();
-                    player = plugin.getProxy().getPlayer(playerName);
+                    player = ProxyServer.getInstance().getPlayer(playerName);
                     playerUuid = player.getUniqueId();
                     checkType = in.readUTF();
                     String punishType = in.readUTF();

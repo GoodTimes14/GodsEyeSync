@@ -1,7 +1,7 @@
 
 allprojects {
     group = 'it.goodtimes14'
-    version = '2.1.2'
+    version = '2.2.0'
 
     apply plugin: 'java'
     compileJava.options.encoding = 'UTF-8'
@@ -13,6 +13,9 @@ subprojects {
     apply plugin: 'java'
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         maven { url "https://repo.codemc.io/repository/nms/" }
         maven {
             name 'sonatype'
@@ -27,7 +30,7 @@ subprojects {
         compileOnly 'com.zaxxer:HikariCP:4.0.3'
         compileOnly 'org.mongodb:mongo-java-driver:3.12.7'
         compileOnly 'org.projectlombok:lombok:1.18.12'
-        compileOnly 'com.h2database:h2:1.4.200'
+        compileOnly 'com.h2database:h2:2.1.210'
         annotationProcessor 'org.projectlombok:lombok:1.18.12'
         compileOnly 'com.velocitypowered:velocity-api:1.1.4'
         annotationProcessor 'com.velocitypowered:velocity-api:1.1.4'
@@ -37,8 +40,18 @@ subprojects {
 task allJar(type: Jar, dependsOn: subprojects.assemble) {
     baseName = 'GodsEyeSync'
     subprojects.each { subproject ->
-        from subproject.configurations.archives.allArtifacts.files.collect {
-            zipTree(it)
+        File file = new File(subproject.getBuildDir().getPath() + "/libs/")
+        boolean dumb = file.listFiles().any {
+            it.getName().endsWith(".jarinjar")
+        }
+        from file.listFiles().collect {
+            if(it.getName().endsWith(".jar")) {
+                if(!dumb) {
+                    zipTree(it)
+                }
+            } else {
+                fileTree(it)
+            }
         }
     }
 }
@@ -46,6 +59,7 @@ task allJar(type: Jar, dependsOn: subprojects.assemble) {
 artifacts {
     archives allJar
 }
+
 
 tasks.withType(Jar) {
     eachFile {

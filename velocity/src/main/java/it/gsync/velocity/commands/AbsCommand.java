@@ -15,7 +15,7 @@ public abstract class AbsCommand implements SimpleCommand {
     private String[] aliases;
 
 
-    public AbsCommand(GSyncVelocity api,String name,String permission,String... aliases)  {
+    public AbsCommand(GSyncVelocity api, String name, String permission, String... aliases)  {
         this.api = api;
         this.name = name;
         this.permission = permission;

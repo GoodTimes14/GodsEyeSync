@@ -15,7 +15,7 @@ public class PlayerData {
     private boolean alerts;
     private boolean verbose;
 
-    public PlayerData(GSyncVelocity api,Player player) {
+    public PlayerData(GSyncVelocity api, Player player) {
         this.player = player;
         if((boolean) api.getConfigHandler().getSetting("enable_alerts_auto")) {
             if(player.hasPermission((String) api.getConfigHandler().getSetting("permission_alert"))) {

@@ -50,14 +50,14 @@ public class FileUtils {
             if (!file.exists()) {
                 FileUtils.download(file, url);
             }
-            FileUtils.injectURL(file.toURI().toURL());
+            //FileUtils.injectURL(file.toURI().toURL());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //method from DeprecatedLuke
-    private static void download(File file, String from){
+    public static void download(File file, String from){
         try {
             URL url = new URL(from);
             InputStream stream = url.openStream();
@@ -70,7 +70,7 @@ public class FileUtils {
     }
 
     //method from DeprecatedLuke
-    public static void injectURL(URL url) {
+    public static void injectURL(ClassLoader loader,URL url) {
         try {
             URLClassLoader systemClassLoader = (URLClassLoader) injectorClassLoader;
             Class<URLClassLoader> classLoaderClass = URLClassLoader.class;

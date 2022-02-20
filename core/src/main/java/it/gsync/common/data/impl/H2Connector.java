@@ -3,6 +3,7 @@ package it.gsync.common.data.impl;
 import com.google.common.collect.Lists;
 import it.gsync.common.data.DataConnector;
 import it.gsync.common.data.types.ConnectionDetails;
+import it.gsync.common.dependencies.manager.DependencyManager;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
 
@@ -28,6 +29,7 @@ public class H2Connector extends DataConnector {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println(Thread.currentThread().getName());
         url = "jdbc:h2:" + getDetails().getDataFolder().getAbsolutePath() + File.separator
                 + getDetails().getFileName();
         createTables();

@@ -1,6 +1,5 @@
 package it.gsync.velocity.listeners;
 
-import com.velocitypowered.api.proxy.ProxyServer;
 import it.gsync.velocity.GSyncVelocity;
 
 public abstract class AbsListener  {

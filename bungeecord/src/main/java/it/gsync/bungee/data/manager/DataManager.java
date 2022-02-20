@@ -9,6 +9,7 @@ import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -89,14 +90,14 @@ public class DataManager implements IDataManager {
                     .replace("%player%",punish.getPlayerName())
                     .replace("%server%",punish.getServer())
                     .replace("%hack%",hack);
-            plugin.getProxy().broadcast(new TextComponent(kickMessage));
+            plugin.getLoader().getProxy().broadcast(new TextComponent(kickMessage));
         } else {
             String banMessage = plugin.getConfigHandler().getBanMessage()
                     .replace("%player%", punish.getPlayerName())
                     .replace("%server%",punish.getServer())
                     .replace("%hack%",hack);
             if((Boolean) plugin.getConfigHandler().getSetting("ban_broadcast")) {
-                plugin.getProxy().broadcast(new TextComponent(banMessage));
+                plugin.getLoader().getProxy().broadcast(new TextComponent(banMessage));
             }
         }
     }
@@ -109,13 +110,13 @@ public class DataManager implements IDataManager {
                     .replace("%player%", punish.getPlayerName())
                     .replace("%server%",punish.getServer())
                     .replace("%hack%",hack);
-            plugin.getProxy().getPluginManager().dispatchCommand(plugin.getProxy().getConsole(),kickCommand);
+            ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),kickCommand);
         } else {
             String banCommand = ((String) plugin.getConfigHandler().getSetting("ban_command"))
                     .replace("%player%", punish.getPlayerName())
                     .replace("%server%",punish.getServer())
                     .replace("%hack%",hack);
-            plugin.getProxy().getPluginManager().dispatchCommand(plugin.getProxy().getConsole(),banCommand);
+            ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(),banCommand);
         }
     }
 }

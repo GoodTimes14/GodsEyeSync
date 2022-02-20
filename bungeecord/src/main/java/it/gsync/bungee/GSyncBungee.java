@@ -7,16 +7,21 @@ import it.gsync.bungee.config.ConfigHandler;
 import it.gsync.bungee.data.manager.DataManager;
 import it.gsync.bungee.listeners.impl.PlayerConnection;
 import it.gsync.bungee.listeners.impl.PluginListener;
+import it.gsync.common.GSync;
+import it.gsync.common.classloader.ClassPathAppender;
+import it.gsync.common.classloader.JarInJarClassLoader;
+import it.gsync.common.classloader.impl.DefaultClassPathAppender;
 import it.gsync.common.data.DataConnector;
 import it.gsync.common.data.impl.H2Connector;
 import it.gsync.common.data.impl.HikariConnector;
 import it.gsync.common.data.impl.MongoConnector;
 import it.gsync.common.data.types.ConnectionDetails;
 import it.gsync.common.data.types.StorageType;
+import it.gsync.common.dependencies.manager.DependencyManager;
 import it.gsync.common.messages.MessageHandler;
-import it.gsync.common.utils.FileUtils;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -31,30 +36,43 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Getter
 @Setter
-public class GSyncBungee extends Plugin {
+public class GSyncBungee implements GSync {
 
 
+
+    private Plugin loader;
+    private DefaultClassPathAppender classPathAppender;
     private DataManager dataManager;
     private Map<StorageType,Supplier<DataConnector>> connectorsMap;
     private ConnectionDetails connectionDetails;
+    private DependencyManager dependencyManager;
     private ConfigHandler configHandler;
     private MessageHandler messageHandler;
     private DataConnector dataConnector;
     public Configuration config;
 
+
+    public GSyncBungee(Plugin plugin) {
+        this.loader = plugin;
+        classPathAppender = new DefaultClassPathAppender((JarInJarClassLoader) getClass().getClassLoader());
+    }
+
+
     @Override
     public void onEnable() {
         saveDefaultConfig();
         try {
-            InputStream in = getResourceAsStream("bungeeconfig.yml");
+            InputStream in = loader.getResourceAsStream("bungeeconfig.yml");
             Configuration defaults = ConfigurationProvider.getProvider(YamlConfiguration.class).load(in);
             config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"),defaults);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        dependencyManager = new DependencyManager(new File(getDataFolder(),"libraries"),getClassPathAppender());
         configHandler = new ConfigHandler(this);
         dataManager = new DataManager(this);
         connectorsMap = new HashMap<>();
@@ -71,14 +89,39 @@ public class GSyncBungee extends Plugin {
             String password = config.getString("storage.credentials.password");
             connectionDetails = new ConnectionDetails(storageType,host,port,database,auth,username,password,getDataFolder(),(String) getConfigHandler().getSetting("h2_dbname"));
             getLogger().log(Level.INFO,"Checking if drivers are downloaded...");
-            FileUtils.downloadLibraries(new File(getDataFolder(),"libraries"),connectionDetails);
+            dependencyManager.loadDependencies(connectionDetails.getStorageType());
             dataConnector = connectorsMap.get(storageType).get();
         }
         messageHandler = new MessageHandler(dataManager,configHandler,dataConnector);
         registerChannels();
         registerListeners();
         registerCommands();
-        getLogger().fine("§aGodsEyeSync Enabled (version: "  + getDescription().getVersion() + ")");
+        getLogger().fine("§aGodsEyeSync Enabled (version: "  + loader.getDescription().getVersion() + ")");
+    }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    @Override
+    public ClassPathAppender getClassPathAppender() {
+        return classPathAppender;
+    }
+
+    @Override
+    public void onLoad() {
+
+    }
+
+    @Override
+    public Logger getLogger() {
+        return loader.getLogger();
+    }
+
+    @Override
+    public File getDataFolder() {
+        return loader.getDataFolder();
     }
 
     private void registerListeners() {
@@ -88,9 +131,9 @@ public class GSyncBungee extends Plugin {
 
     private void registerChannels() {
         getLogger().info("Register channels...");
-        getProxy().getInstance().registerChannel("gsync:alerts");
-        getProxy().getInstance().registerChannel("gsync:violations");
-        getProxy().getInstance().registerChannel("gsync:punishments");
+        ProxyServer.getInstance().registerChannel("gsync:alerts");
+        ProxyServer.getInstance().registerChannel("gsync:violations");
+        ProxyServer.getInstance().registerChannel("gsync:punishments");
     }
 
     private void registerCommands() {
@@ -105,7 +148,7 @@ public class GSyncBungee extends Plugin {
             getDataFolder().mkdir();
         File configFile = new File(getDataFolder(), "config.yml");
         if (!configFile.exists()) {
-            try (InputStream in = getResourceAsStream("bungeeconfig.yml")) {
+            try (InputStream in = loader.getResourceAsStream("bungeeconfig.yml")) {
                 Files.copy(in, configFile.toPath());
                 configFile.renameTo(new File(getDataFolder(), "config.yml"));
             } catch (IOException e) {

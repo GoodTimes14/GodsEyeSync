@@ -13,8 +13,9 @@ import it.gsync.common.data.impl.HikariConnector;
 import it.gsync.common.data.impl.MongoConnector;
 import it.gsync.common.data.types.ConnectionDetails;
 import it.gsync.common.data.types.StorageType;
+import it.gsync.common.dependencies.manager.DependencyManager;
 import it.gsync.common.messages.MessageHandler;
-import it.gsync.common.utils.FileUtils;
+import it.gsync.velocity.appender.VelocityClassPathAppender;
 import it.gsync.velocity.commands.impl.AlertsCommand;
 import it.gsync.velocity.commands.impl.LogsCommand;
 import it.gsync.velocity.commands.impl.VerbosesCommand;
@@ -35,7 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-@Plugin(id = "godseyesync", name = "GodsEyeSync", version = "2.1.2",
+@Plugin(id = "godseyesync", name = "GodsEyeSync", version = "2.2.0",
         description = "GodsEyeSync plugin", authors = {"GoodTimes14"})
 @Getter
 @Setter
@@ -46,6 +47,7 @@ public class GSyncVelocity {
     private MessageHandler messageHandler;
     private final File dataDirectory;
     private ConnectionDetails connectionDetails;
+    private DependencyManager dependencyManager;
     private DataManager dataManager;
     private DataConnector dataConnector;
     private Map<StorageType, Supplier<DataConnector>> connectorsMap;
@@ -71,6 +73,7 @@ public class GSyncVelocity {
         connectorsMap.put(StorageType.MYSQL,() -> new HikariConnector(getLogger(),connectionDetails));
         connectorsMap.put(StorageType.H2,() -> new H2Connector(getLogger(),connectionDetails));
         configHandler = new ConfigHandler(this);
+        dependencyManager = new DependencyManager(new File(getDataDirectory(),"libraries"),new VelocityClassPathAppender(this,server));
         dataManager = new DataManager(this);
         if(configHandler.getConfiguration().get("storage.enabled",Boolean.class)) {
             StorageType storageType = StorageType.valueOf(configHandler.getConfiguration().get("storage.type",String.class).toUpperCase(Locale.ROOT));
@@ -82,7 +85,7 @@ public class GSyncVelocity {
             String password = configHandler.getConfiguration().get("storage.credentials.password",String.class);
             connectionDetails = new ConnectionDetails(storageType,host,port,database,auth,username,password,getDataDirectory(),(String) getConfigHandler().getSetting("h2_dbname"));
             getLogger().log(Level.INFO,"Checking if drivers are downloaded...");
-            FileUtils.downloadLibraries(new File(getDataDirectory(),"libraries"),connectionDetails);
+            dependencyManager.loadDependencies(connectionDetails.getStorageType());
             dataConnector = connectorsMap.get(storageType).get();
         }
         registerListeners();
