@@ -11,8 +11,11 @@ public class DefaultClassPathAppender implements ClassPathAppender {
 
     private JarInJarClassLoader classLoader;
 
-    public DefaultClassPathAppender(JarInJarClassLoader classLoader) {
-        this.classLoader = classLoader;
+    public DefaultClassPathAppender(ClassLoader classLoader) {
+        if(!(classLoader instanceof JarInJarClassLoader)) {
+            throw new IllegalArgumentException("Not a JarInJarClassLoader");
+        }
+        this.classLoader = (JarInJarClassLoader) classLoader;
     }
 
     @Override

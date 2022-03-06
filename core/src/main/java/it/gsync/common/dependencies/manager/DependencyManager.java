@@ -1,6 +1,7 @@
 package it.gsync.common.dependencies.manager;
 
 import it.gsync.common.classloader.ClassPathAppender;
+import it.gsync.common.classloader.JarInJarClassLoader;
 import it.gsync.common.data.types.StorageType;
 import it.gsync.common.dependencies.Dependency;
 import it.gsync.common.utils.FileUtils;
