@@ -2,7 +2,7 @@ package it.gsync.velocity.appender;
 
 import com.velocitypowered.api.proxy.ProxyServer;
 import it.gsync.common.classloader.ClassPathAppender;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,10 +10,10 @@ import java.nio.file.Path;
 public class VelocityClassPathAppender implements ClassPathAppender {
 
 
-    private GSyncVelocity plugin;
+    private GSyncVelocityLoader plugin;
     private ProxyServer server;
 
-    public VelocityClassPathAppender(GSyncVelocity plugin,ProxyServer server) {
+    public VelocityClassPathAppender(GSyncVelocityLoader plugin, ProxyServer server) {
         this.plugin = plugin;
         this.server = server;
     }

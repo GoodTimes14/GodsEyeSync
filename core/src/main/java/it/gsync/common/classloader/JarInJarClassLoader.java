@@ -4,6 +4,7 @@ import it.gsync.common.GSync;
 import it.gsync.common.utils.loader.ClassLoaderException;
 
 import javax.management.ReflectionException;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -68,7 +69,30 @@ public class JarInJarClassLoader extends URLClassLoader {
         }
     }
 
-    private static URL extractJar(ClassLoader loaderClassLoader, String jarResourcePath) throws ClassLoaderException {
+    public static File copyFile(ClassLoader loaderClassLoader, String jarResourcePath,File destinationFolder) throws ClassLoaderException {
+        // get the jar-in-jar resource
+        URL jarInJar = loaderClassLoader.getResource(jarResourcePath);
+        if (jarInJar == null) {
+            throw new ClassLoaderException("Could not locate jar-in-jar");
+        }
+
+        // create a temporary file
+        // on posix systems by default this is only read/writable by the process owner
+        File file = new File(destinationFolder,jarResourcePath);
+        // mark that the file should be deleted on exit
+        file.deleteOnExit();
+
+        // copy the jar-in-jar to the temporary file path
+        try (InputStream in = jarInJar.openStream()) {
+            Files.copy(in, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new ClassLoaderException("Unable to copy jar-in-jar to temporary path", e);
+        }
+
+        return file;
+    }
+
+    public static URL extractJar(ClassLoader loaderClassLoader, String jarResourcePath) throws ClassLoaderException {
         // get the jar-in-jar resource
         URL jarInJar = loaderClassLoader.getResource(jarResourcePath);
         if (jarInJar == null) {
@@ -79,7 +103,7 @@ public class JarInJarClassLoader extends URLClassLoader {
         // on posix systems by default this is only read/writable by the process owner
         Path path;
         try {
-            path = Files.createTempFile("gsync-jarinjar", ".jar.tmp");
+            path = Files.createTempFile( jarResourcePath + "-jarinjar", ".jar.tmp");
         } catch (IOException e) {
             throw new ClassLoaderException("Unable to create a temporary file", e);
         }

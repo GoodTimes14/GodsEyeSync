@@ -2,12 +2,13 @@ package it.gsync.velocity.data.manager;
 
 import com.google.common.collect.Maps;
 import com.velocitypowered.api.proxy.Player;
-import it.gsync.common.data.manager.IDataManager;
+import it.gsync.common.data.IDataManager;
 import it.gsync.common.objects.Alert;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 import it.gsync.velocity.data.PlayerData;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;

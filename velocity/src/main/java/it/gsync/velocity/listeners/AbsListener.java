@@ -1,6 +1,7 @@
 package it.gsync.velocity.listeners;
 
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
+import it.gsync.velocity.plugin.GSyncVelocity;
 
 public abstract class AbsListener  {
 
@@ -8,7 +9,7 @@ public abstract class AbsListener  {
 
     public AbsListener(GSyncVelocity api) {
         this.api = api;
-        api.getServer().getEventManager().register(api,this);
+        api.getServer().getEventManager().register(api.getLoader(),this);
     }
 
 }

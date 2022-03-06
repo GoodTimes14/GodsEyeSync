@@ -3,7 +3,7 @@ package it.gsync.bungee.data.manager;
 import com.google.common.collect.Maps;
 import it.gsync.bungee.GSyncBungee;
 import it.gsync.bungee.data.*;
-import it.gsync.common.data.manager.IDataManager;
+import it.gsync.common.data.IDataManager;
 import it.gsync.common.objects.Alert;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;

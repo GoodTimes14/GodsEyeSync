@@ -4,8 +4,9 @@ import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.PostLoginEvent;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 import it.gsync.velocity.listeners.AbsListener;
+import it.gsync.velocity.plugin.GSyncVelocity;
 
 public class PlayerConnection extends AbsListener {
 

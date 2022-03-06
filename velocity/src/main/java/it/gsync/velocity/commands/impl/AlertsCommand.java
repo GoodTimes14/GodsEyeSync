@@ -2,9 +2,10 @@ package it.gsync.velocity.commands.impl;
 
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 import it.gsync.velocity.commands.AbsCommand;
 import it.gsync.velocity.data.PlayerData;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import net.kyori.adventure.text.Component;
 
 public class AlertsCommand extends AbsCommand {

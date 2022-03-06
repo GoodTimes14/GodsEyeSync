@@ -2,7 +2,8 @@ package it.gsync.velocity.commands;
 
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.SimpleCommand;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import lombok.Getter;
 
 @Getter

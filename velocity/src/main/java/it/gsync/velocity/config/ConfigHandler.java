@@ -3,7 +3,8 @@ package it.gsync.velocity.config;
 import it.gsync.common.configuration.YamlConfiguration;
 import it.gsync.common.configuration.handler.IConfigHandler;
 import it.gsync.common.utils.ColorUtils;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import lombok.Getter;
 
 import java.util.List;

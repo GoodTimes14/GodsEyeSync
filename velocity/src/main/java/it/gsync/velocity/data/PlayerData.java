@@ -1,7 +1,8 @@
 package it.gsync.velocity.data;
 
 import com.velocitypowered.api.proxy.Player;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import lombok.Getter;
 import lombok.Setter;
 import net.kyori.adventure.text.Component;

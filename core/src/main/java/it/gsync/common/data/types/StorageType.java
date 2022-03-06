@@ -24,7 +24,7 @@ public enum StorageType {
                     "mysql-connector-java",
                     "8.0.24",
                     "com.mysql.jdbc.Connection"
-                    ),
+            ),
             new Dependency(
                     "org.slf4j",
                     "slf4j-api",

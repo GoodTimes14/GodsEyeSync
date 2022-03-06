@@ -3,8 +3,9 @@ package it.gsync.velocity.commands.impl;
 import com.velocitypowered.api.command.CommandSource;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 import it.gsync.velocity.commands.AbsCommand;
+import it.gsync.velocity.plugin.GSyncVelocity;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 

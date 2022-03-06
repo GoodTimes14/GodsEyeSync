@@ -7,8 +7,9 @@ import com.velocitypowered.api.proxy.Player;
 import it.gsync.common.objects.Alert;
 import it.gsync.common.objects.Flag;
 import it.gsync.common.objects.Punish;
-import it.gsync.velocity.GSyncVelocity;
+import it.gsync.velocity.GSyncVelocityLoader;
 import it.gsync.velocity.listeners.AbsListener;
+import it.gsync.velocity.plugin.GSyncVelocity;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

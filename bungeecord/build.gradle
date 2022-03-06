@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     compileOnly project(":core")
+    compileOnly project(":database")
     compileOnly 'net.md-5:bungeecord-api:1.16-R0.5-SNAPSHOT'
 }
 
